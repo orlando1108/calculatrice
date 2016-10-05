@@ -28,7 +28,7 @@ nom = Console.ReadLine();
 
 // dire bonjour à l'utilisateur 
 Console.WriteLine(saluer + " " + nom);
-            Console.ReadLine();
+           // Console.ReadLine();
 
 }
 
@@ -36,14 +36,15 @@ Console.WriteLine(saluer + " " + nom);
 
 #region menu
 
-static float choisirOperation()
+static string choisirOperation()
 {
+Console.ReadKey();
 Console.Clear();
-float reponse;
-reponse = 0;
-reponse = saisirNombre("tapez le numero de l'operation que vous voulez effectuer: \n" +
-            "1. addition\n 2. soustraction\n 3. multiplication\n 4. division"+
-            "\n tapez -0 pour quitter");
+string reponse;
+reponse = "";
+reponse = saisirOperation("tapez le signe de l'operation que vous voulez effectuer: \n" +
+            " +  addition\n -  soustraction\n *  multiplication\n /  division"+
+            "\n /e  division euclidienne\n\ntapez -0 pour quitter");
             
 return reponse;
 }
@@ -60,7 +61,7 @@ return float.Parse(reponse);
 }
         #endregion
 
-        #region fonction saisir
+ #region fonction saisir nombre entier
         static int saisirNombreEntier(string prompt)
         {
             string reponse;
@@ -70,6 +71,18 @@ return float.Parse(reponse);
 
         }
         #endregion
+
+        #region fonction choisir une operation
+        static string saisirOperation(string prompt)
+        {
+            string reponse;
+            Console.WriteLine(prompt);
+            reponse = Console.ReadLine();
+            return reponse;
+
+        }
+        #endregion
+
         #region additionner
         //fonction pour additionner deux nombres
         static void additionner()
@@ -92,7 +105,7 @@ Console.WriteLine("la somme de vos nombres est:" + somme.ToString());
 }
 #endregion
 
-#region
+#region soustraire
 //fonction pour soustraire deux nombres
 static void soustraire()
 {   //variables
@@ -108,7 +121,7 @@ nombre2 = saisirNombre("entrez un deuxieme nombre");
 //tryParse
 difference = nombre1 - nombre2;
 Console.WriteLine("la difference de vos nombres est:" + difference.ToString());
-    Console.ReadLine();
+//Console.ReadLine();
 
 }
 
@@ -128,7 +141,7 @@ nombre2 = saisirNombre("entrez un deuxieme nombre");
             
 produit = nombre1 * nombre2;
 Console.WriteLine("la produit de vos nombres est:" + produit.ToString());
-    Console.ReadLine();
+    //Console.ReadLine();
 
 }
 #endregion
@@ -153,40 +166,44 @@ while (nombre2 == 0)
 
 produit = nombre1 / nombre2;
 Console.WriteLine("le resultat de votre division est:" + produit.ToString());
-    Console.ReadLine();
+   // Console.ReadLine();
            
           
 }
         #endregion
 
 #region choix
-        static void choix(float reponse)
+        static void choix(string reponse)
     {
         // choix de loperation en fonction de la reponse
-        if (reponse != -0)
+        if (reponse != "-0")
         {
 
 
-            if (reponse == 1)
+            if (reponse == "+")
             {
                 additionner();
 
             }
-            if (reponse == 2)
+            if (reponse == "-")
             {
                 soustraire();
 
             }
-            if (reponse == 3)
+            if (reponse == "*")
             {
                 multiplier();
 
             }
-            if (reponse == 4)
+            if (reponse == "/")
             {
                 diviser();
 
             }
+            if(reponse == "/e")
+                {
+                    divisionEuclidienne();
+                }
         }
       
     }
@@ -210,42 +227,50 @@ Console.WriteLine("le resultat de votre division est:" + produit.ToString());
                 diviseur = saisirNombreEntier(" division impossible par zero, entrez un autre nombre !!! ");
             }
 
-            do {
-                reste = dividende - diviseur;
-                quotient++;
+            /* do {
+                 reste = dividende - diviseur;
+                 dividende = reste;
+                 quotient++;
 
+             }
+             while (reste >= diviseur);*/
+            reste = dividende - diviseur;
+            while (reste >= diviseur)
+            {
+                reste = dividende - diviseur;
+                dividende = reste;
+                quotient++;
             }
-            while (reste >= diviseur);
             
-            if(reste == diviseur)
+                if (reste == diviseur)
             {
                 reste = 0;
             }
             
-            Console.WriteLine("le resultat de votre division est:" + quotient.ToString() + " et reste:"+ reste.ToString());
+            Console.WriteLine("le resultat de votre division est:" + quotient.ToString() + " et le reste:"+ reste.ToString());
+          //  Console.ReadKey();
+
          
         }
         #endregion
 
         static void Main(string[] args)
 {
-    float reponse;
-    reponse = 0;
+    string reponse;
+    reponse = "";
     saluer();
     reponse = choisirOperation();
 
 
-    while ( reponse != -0)
+    while ( reponse != "-0")
     {
         choix(reponse);
         reponse = choisirOperation();
     }
 
             Console.WriteLine("merci de votre participation");
-            Console.ReadKey();
-
-
-
+           Console.ReadKey();
+            
         }
 }
 }

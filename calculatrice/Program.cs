@@ -58,11 +58,21 @@ reponse = Console.ReadLine();
 return float.Parse(reponse);
 
 }
-#endregion
+        #endregion
 
-#region additionner
-//fonction pour additionner deux nombres
-static void additionner()
+        #region fonction saisir
+        static int saisirNombreEntier(string prompt)
+        {
+            string reponse;
+            Console.WriteLine(prompt);
+            reponse = Console.ReadLine();
+            return int.Parse(reponse);
+
+        }
+        #endregion
+        #region additionner
+        //fonction pour additionner deux nombres
+        static void additionner()
 {   //variables
 float nombre1;
 float nombre2;
@@ -147,8 +157,10 @@ Console.WriteLine("le resultat de votre division est:" + produit.ToString());
            
           
 }
-    #endregion
-    static void choix(float reponse)
+        #endregion
+
+#region choix
+        static void choix(float reponse)
     {
         // choix de loperation en fonction de la reponse
         if (reponse != -0)
@@ -178,8 +190,44 @@ Console.WriteLine("le resultat de votre division est:" + produit.ToString());
         }
       
     }
+        #endregion
 
-    static void Main(string[] args)
+        #region division euclidienne
+        static void divisionEuclidienne()
+        {
+            int dividende;
+            int diviseur;
+            int quotient;
+            quotient = 0;
+            int reste;
+
+
+            dividende = saisirNombreEntier("entrez un nombre");
+            diviseur = saisirNombreEntier("entrez un deuxieme nombre");
+
+            while (diviseur == 0)
+            {
+                diviseur = saisirNombreEntier(" division impossible par zero, entrez un autre nombre !!! ");
+            }
+
+            do {
+                reste = dividende - diviseur;
+                quotient++;
+
+            }
+            while (reste >= diviseur);
+            
+            if(reste == diviseur)
+            {
+                reste = 0;
+            }
+            
+            Console.WriteLine("le resultat de votre division est:" + quotient.ToString() + " et reste:"+ reste.ToString());
+         
+        }
+        #endregion
+
+        static void Main(string[] args)
 {
     float reponse;
     reponse = 0;

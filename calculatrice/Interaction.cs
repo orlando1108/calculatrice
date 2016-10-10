@@ -39,14 +39,12 @@ namespace calculatrice
                 _reponse = Console.ReadLine();
                                                                          //chars = _reponse.ToCharArray();
 
-                if (String.IsNullOrEmpty(_reponse))
-                {
+               
                     try
                     {
-                        if (float.TryParse(_reponse, out result))
-                        {
-                            succeeded = true;
-                        }
+                        result = float.Parse(_reponse);
+                        succeeded = true;
+                        
                     }
                     catch (FormatException e)
                     {
@@ -56,7 +54,11 @@ namespace calculatrice
                     {
                         Console.WriteLine("Désolé je ne gere pas les nombres aussi gros.");
                     }
-                }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("je m'est cassé :/");
+                    }
+                
 
             } while (succeeded == false);
 

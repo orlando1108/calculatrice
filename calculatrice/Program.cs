@@ -61,7 +61,7 @@ return float.Parse(reponse);
 }
         #endregion
 
- #region fonction saisir nombre entier
+#region fonction saisir nombre entier
         static int saisirNombreEntier(string prompt)
         {
             string reponse;
@@ -72,7 +72,7 @@ return float.Parse(reponse);
         }
         #endregion
 
-        #region fonction choisir une operation
+#region fonction choisir une operation
         static string saisirOperation(string prompt)
         {
             string reponse;
@@ -83,7 +83,7 @@ return float.Parse(reponse);
         }
         #endregion
 
-        #region additionner
+#region additionner
         //fonction pour additionner deux nombres
         static void additionner()
 {   //variables
@@ -256,20 +256,25 @@ Console.WriteLine("le resultat de votre division est:" + produit.ToString());
 
         static void Main(string[] args)
 {
-    string reponse;
-    reponse = "";
-    saluer();
-    reponse = choisirOperation();
+            /* string reponse;
+             reponse = "";
+             saluer();
+             reponse = choisirOperation();
 
 
-    while ( reponse != "-0")
-    {
-        choix(reponse);
-        reponse = choisirOperation();
-    }
+             while ( reponse != "-0")
+             {
+                 choix(reponse);
+                 reponse = choisirOperation();
+             }
 
-            Console.WriteLine("merci de votre participation");
-           Console.ReadKey();
+                     Console.WriteLine("merci de votre participation");
+                    Console.ReadKey();*/
+
+            Interaction inter = new Interaction();
+            inter.saisirNombre("veuillez saisir un nombre :");
+
+
             
         }
 }

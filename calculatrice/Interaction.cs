@@ -37,9 +37,6 @@ namespace calculatrice
             {
                 Console.WriteLine(prompt);
                 _reponse = Console.ReadLine();
-                                                                         //chars = _reponse.ToCharArray();
-
-               
                     try
                     {
                         result = float.Parse(_reponse);

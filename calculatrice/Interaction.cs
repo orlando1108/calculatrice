@@ -30,39 +30,42 @@ namespace calculatrice
         #region fonction saisir
         public float saisirNombre(string prompt)
         {
-            float number = 0;
-            char[] chars;
-           
+            bool succeeded = false;
+            float result = 0;
 
-            do { 
-
-
-                _
+            do
+            {
                 Console.WriteLine(prompt);
                 _reponse = Console.ReadLine();
-                chars = _reponse.ToCharArray();
+                                                                         //chars = _reponse.ToCharArray();
 
+                if (String.IsNullOrEmpty(_reponse))
+                {
+                    try
+                    {
+                        if (float.TryParse(_reponse, out result))
+                        {
+                            succeeded = true;
+                        }
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Tapez un nombre svp"); 
+                    }
+                    catch (OverflowException e)
+                    {
+                        Console.WriteLine("Désolé je ne gere pas les nombres aussi gros.");
+                    }
+                }
 
-                try
-                {
-                    number = float.Parse(_reponse);
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine("Tapez un nombre svp"); // à personnaliser
-                                                              // number = saisirNombre(prompt);
-                }
-                catch (OverflowException e)
-                {
-                    Console.WriteLine("Désolé je ne gere pas les nombres aussi gros.");
-                    //number = saisirNombre(prompt);
-                }
-               // return number;
-            }while(!  )
-            
-               
+            } while (succeeded == false);
+
+            return result;
         }
         #endregion
+
+
+
 
 
        /* public string ChoisirOperation()
